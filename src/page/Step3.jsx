@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import supabase from "../supabase";
-import Banner2 from "../iklan/banner2.jsx";
 
 export default function Step3() {
   const { slug, token } = useParams();
@@ -66,11 +65,6 @@ export default function Step3() {
         <p className="text-center text-gray-400 mb-6">
           Klik tombol di bawah untuk membuka link tujuan
         </p>
-
-        {/* SLOT IKLAN */}
-        <div  className="flex justify-center mb-6">
-          <Banner2 />
-        </div>
 
         {/* BUTTON */}
         <button
