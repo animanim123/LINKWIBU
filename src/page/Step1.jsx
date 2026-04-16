@@ -8,62 +8,34 @@ export default function Step1() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [destination, setDestination] = useState(null);
 
   useEffect(() => {
     checkSlug();
   }, []);
 
   const checkSlug = async () => {
-    const { data } = await supabase
-      .from("link")
-      .select("id")
-      .eq("slug", slug)
-      .single();
-
-    if (!data) {
-      setError(true);
-      setLoading(false);
-      return;
-    }
-    setLoading(false);
-  };
-
-  const createToken = async () => {
-    // 1. Ambil data link (id + views)
     const { data, error } = await supabase
       .from("link")
-      .select("id, views")
+      .select("destination")
       .eq("slug", slug)
       .single();
 
     if (error || !data) {
-      console.error("Gagal ambil link");
+      setError(true);
+      setLoading(false);
       return;
     }
 
-    const currentViews = data.views ?? 0;
-
-    // 2. Update views
-    await supabase
-      .from("link")
-      .update({ views: currentViews + 1 })
-      .eq("id", data.id);
-    const token = crypto.randomUUID();
-
-    await supabase.from("step_token").insert({
-      slug,
-      token,
-      used: false,
-      expires_at: new Date(Date.now() + 3 * 60 * 1000).toISOString(),
-    });
-
-    navigate(`/go/${slug}/open/${token}`);
+    // simpan destination
+    setDestination(data.destination);
+    setLoading(false);
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        Loading...
+      <div className="min-h-screen bg-slate-900 text-white text-4xl flex flex-col items-center justify-center font-bold">
+        <p>Loading...</p>
       </div>
     );
   }
@@ -91,7 +63,9 @@ export default function Step1() {
         </p>
 
         <button
-          onClick={createToken}
+          onClick={() => {
+            window.location.href = destination;
+          }}
           className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"
         >
           Lanjutkan
