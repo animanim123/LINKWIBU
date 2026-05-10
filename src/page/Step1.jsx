@@ -58,12 +58,28 @@ export default function Step1() {
         <h1 className="text-2xl font-bold text-center mb-3">
           🔗 Link Terkunci
         </h1>
-        <p className="text-gray-400 text-center mb-6">
+        <p className="text-gray-400 text-center mb-8">
           Klik tombol untuk melanjutkan
         </p>
 
         <button
-          onClick={() => {
+          onClick={async () => {
+            // ambil data views sekarang
+            const { data } = await supabase
+              .from("link")
+              .select("views")
+              .eq("slug", slug)
+              .single();
+
+            // update views + 1
+            await supabase
+              .from("link")
+              .update({
+                views: (data?.views || 0) + 1,
+              })
+              .eq("slug", slug);
+
+            // redirect
             window.location.href = destination;
           }}
           className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"
@@ -71,8 +87,8 @@ export default function Step1() {
           Lanjutkan
         </button>
 
-        <p className="text-xs text-gray-500 text-center mt-4">
-          Jangan refresh halaman ini
+        <p className="text-xs text-gray-500 text-center mt-8">
+          Jika link error hubungi admin untuk meperbaikinya <a href="https://tako.id/GAZZ_DEV" className="text-white border-b-1 font-semibold border-white">HUBUNGI SEKARANG</a>
         </p>
       </div>
     </div>
