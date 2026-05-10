@@ -56,10 +56,10 @@ export default function Step1() {
       </div>
       <div className="bg-slate-800 text-white p-6 rounded-2xl w-full max-w-md shadow-xl">
         <h1 className="text-2xl font-bold text-center mb-3">
-          🔗 Link Terkunci
+          🚀 Siap Melanjutkan
         </h1>
         <p className="text-gray-400 text-center mb-8">
-          Klik tombol untuk melanjutkan
+          Klik tombol di bawah untuk membuka link tujuan
         </p>
 
         <button
