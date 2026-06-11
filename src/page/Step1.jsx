@@ -87,9 +87,25 @@ export default function Step1() {
           Lanjutkan
         </button>
 
-        <p className="text-xs text-gray-500 text-center mt-8">
-          Jika link error hubungi admin untuk meperbaikinya <a href="https://tako.id/GAZZ_DEV" className="text-white border-b-1 font-semibold border-white">HUBUNGI SEKARANG</a>
-        </p>
+        <div className="text-xs text-gray-500 text-center mt-8">
+          <p>Jika link error hubungi admin untuk meperbaikinya</p>
+
+          <div className="flex gap-1 justify-center items-center">
+            <a
+              href="https://tako.id/GAZZ_DEV"
+              className="text-white border-b font-semibold border-white"
+            >
+              Hubungi Sekarang
+            </a>
+
+            <a
+              href="/privacypolicy"
+              className="text-white border-b font-semibold border-white"
+            >
+              Privacy Policy
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
