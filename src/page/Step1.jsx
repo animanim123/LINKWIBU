@@ -59,7 +59,7 @@ export default function Step1() {
           🚀 Siap Melanjutkan
         </h1>
         <p className="text-gray-400 text-center mb-8">
-          Klik tombol di bawah untuk membuka link tujuan
+          Klik tombol di bawah untuk membuka link tujuan anda
         </p>
 
         <button
