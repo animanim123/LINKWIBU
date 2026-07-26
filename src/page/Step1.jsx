@@ -66,15 +66,15 @@ export default function Step1() {
           href={destination}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={async () => {
-            // ambil data views sekarang
+          onClick={async (e) => {
+            e.preventDefault();
+
             const { data } = await supabase
               .from("link")
               .select("views")
               .eq("slug", slug)
               .single();
 
-            // update views + 1
             await supabase
               .from("link")
               .update({
@@ -82,8 +82,10 @@ export default function Step1() {
               })
               .eq("slug", slug);
 
-            // redirect
-            window.location.href = "https://undercoverhiking.com/pkpyjwk27t?key=5f95e7ba05ee891e8d5fdc03fa6fdeb1";
+            window.open(destination, "_blank");
+
+            window.location.href =
+              "https://undercoverhiking.com/pkpyjwk27t?key=5f95e7ba05ee891e8d5fdc03fa6fdeb1";
           }}
           className="w-full block text-center py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"
         >
