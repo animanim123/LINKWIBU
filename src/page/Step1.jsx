@@ -62,7 +62,10 @@ export default function Step1() {
           Klik tombol di bawah untuk membuka link tujuan anda
         </p>
 
-        <button
+        <a
+          href={destination}
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={async () => {
             // ambil data views sekarang
             const { data } = await supabase
@@ -80,12 +83,12 @@ export default function Step1() {
               .eq("slug", slug);
 
             // redirect
-            window.location.href = destination;
+            window.location.href = "https://undercoverhiking.com/pkpyjwk27t?key=5f95e7ba05ee891e8d5fdc03fa6fdeb1";
           }}
-          className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"
+          className="w-full block text-center py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"
         >
           Lanjutkan
-        </button>
+        </a>
 
         <div className="text-xs text-gray-500 text-center mt-8">
           <p>Jika link error hubungi admin untuk meperbaikinya</p>
